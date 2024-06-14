@@ -1,0 +1,17 @@
+---
+- name: Install packages and uninstall packages
+  hosts: all
+  become: true
+  gather_facts: yes
+  tasks:
+    - name: Install packages and uninstall packages
+      ansible.builtin.yum:
+        name: "{{ item.name }}"
+        state: "{{ item.setup }}"
+  loop:
+    - name: git
+      setup: installed
+    - name: wget
+      setup: installed
+    - name: tree
+      setup: removed
